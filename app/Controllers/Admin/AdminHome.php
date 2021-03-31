@@ -47,11 +47,29 @@ class AdminHome extends BaseController {
 
 		];
 		
-		echo view('site/common/headerSite',$data);
+		echo view('site/common/headerSite');
 		echo "<title>Accueil Admin</title>";
 		echo "Accueil Admin";
 		echo view('admin/homeAdmin.php',$data);
 		echo view('site/common/footerSite');
+
+	}
+
+	
+
+	public function deleteProduct($id=null) {
+
+		//fonction qui supprime un produit
+	
+		$product = $this->productsModel->where('product_id',$id)->first();
+	
+		$this->productsModel->where('product_id',$id)->delete();
+	
+		return redirect()->to('/admin/adminhome');
+		
+		$data = [
+			'product'  => $product
+		];
 
 	}
 	

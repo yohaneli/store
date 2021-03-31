@@ -16,8 +16,7 @@
 											<li>Sous-Catégorie du produit : <?php echo $sousCategories['sous_categorie_name'] ; ?></li>
                                         	<li>Date du produit : <?php echo $tabProduct['product_date'] ; ?></li>
 											<button type="submit">Modifier</button>
-											<button type="submit">Supprimer</button>
-
+                                            <a href="<?php echo base_url('admin/adminhome/deleteProduct/'.$tabProduct['product_id']) ; ?>"><button type="submit">Supprimer</button></a>
 										</ul>
                                     
                                     <?php } ?>

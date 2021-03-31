@@ -1,20 +1,45 @@
 
-                            <h4 class="header">Listes des produits</h4>
+<div class="card-body">
 
-                                    <?php if (isset($tabCategories)) {  ?>
+    <h4 class="header">Créer une nouvelle catégorie</h4>
 
-                                        <?php  foreach ($tabCategories as $tabCategorie) {  
+                    <?php if(isset($validation)):?>
 
-                                            ?>                                    
+                        <div class="alert alert-danger"><?= $validation->listErrors() ?></div>
 
-										<ul>
-                                        	<li>Nom du produit : <?php echo $tabCategorie['category_name'] ; ?></li>
-											<button type="submit">Modifier</button>
-											<button type="submit">Supprimer</button>
+                    <?php endif;?>	
 
-										</ul>
-                                    
-                                    <?php } ?>
+        <form class="form-inline" action="/admin/categorie/createCategorie" method="post">
 
-                                        <?php } ?> 
+            <label class="sr-only" for="inlineFormInputName2">Name</label>
+
+            Créer une nouvelle catégorie : <input type="text" name="name" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName2" placeholder="Nom de la catégorie">
+
+            <button type="submit" class="btn btn-primary">Créer une catégorie</button>
+
+        </form>
+
+    <h4 class="header">Liste des catégories</h4>
+
+
+        <?php if (isset($tabCategories)) {  ?>
+
+            <?php  foreach ($tabCategories as $tabCategorie) {  
+
+                ?>                                    
+
+            <ul>
+                <li>Nom de la catégorie : <?php echo $tabCategorie['category_name'] ; ?></li>
+
+                <button type="submit">Modifier</button>
+
+                <a href="<?php echo base_url('admin/categorie/deleteCategorie/'.$tabCategorie['category_id']) ; ?>"><button type="submit">Supprimer</button></a>
+
+            </ul>
+        
+            <?php } ?>
+
+        <?php } ?>
+
+</div>
 
