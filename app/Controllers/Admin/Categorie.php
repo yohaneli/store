@@ -73,12 +73,54 @@ class Categorie extends BaseController {
 
             $data['validation'] = $this->validator;
 
-            echo view('site/common/headerSite');
+            echo view('admin/common/headerAdmin');
             echo view('admin/categorie', $data);
-            echo view('site/common/footerSite');
+            echo view('admin/common/footerAdmin');
             
         }
          
+    }
+
+    public function editCategorie($id=null) {
+
+        $categorie = $this->categoriesModel->where('category_id',$id)->first();
+
+        $rules = [
+            'name'      => 'required',
+        ];
+
+            if($this->validate($rules)) {
+
+                if (!empty($categorie)) {
+
+                    $dataSave = [
+                        'category_name'     => $this->request->getVar('name')
+                    ];
+
+                    $this->categoriesModel->where('category_id',$id)->set($dataSave)->update();
+
+                    return redirect()->to('/admin/categorie');
+
+                } else {
+
+                    echo "Action Impossible,catégorie vide";
+
+                }
+
+            } else {
+
+                //echo "Erreur de saisie de la catégorie";
+
+            }
+        
+        $data = [
+            'categorie'  => $categorie
+        ];
+
+        echo view('admin/common/headerAdmin');
+        echo view('admin/edit', $data);
+        echo view('admin/common/footerAdmin');
+
     }
 
 }

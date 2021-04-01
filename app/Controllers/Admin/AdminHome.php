@@ -47,11 +47,11 @@ class AdminHome extends BaseController {
 
 		];
 		
-		echo view('site/common/headerSite');
+		echo view('admin/common/headerAdmin');
 		echo "<title>Accueil Admin</title>";
 		echo "Accueil Admin";
 		echo view('admin/homeAdmin.php',$data);
-		echo view('site/common/footerSite');
+		echo view('admin/common/footerAdmin');
 
 	}
 

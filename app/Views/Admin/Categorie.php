@@ -31,7 +31,7 @@
             <ul>
                 <li>Nom de la catégorie : <?php echo $tabCategorie['category_name'] ; ?></li>
 
-                <button type="submit">Modifier</button>
+                <a href="<?php echo base_url('admin/categorie/editCategorie/'.$tabCategorie['category_id']) ; ?>"><button type="submit">Modifier</button></a>
 
                 <a href="<?php echo base_url('admin/categorie/deleteCategorie/'.$tabCategorie['category_id']) ; ?>"><button type="submit">Supprimer</button></a>
 

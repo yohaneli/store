@@ -22,10 +22,10 @@ class SousCategorie extends BaseController {
            'tabSousCategories' => $listeSousCategories,
        ];
        
-       echo view('site/common/headerSite');
+       echo view('admin/common/headerAdmin');
        echo "<title>Liste des Sous-Catégories - Admin</title>";
        echo view('admin/souscategorie',$data);
-       echo view('site/common/footerSite');
+       echo view('admin/common/footerAdmin');
 
    }
 
@@ -73,12 +73,55 @@ class SousCategorie extends BaseController {
 
             $data['validation'] = $this->validator;
 
-            echo view('site/common/headerSite');
+            echo view('admin/common/headerAdmin');
             echo view('admin/souscategorie', $data);
-            echo view('site/common/footerSite');
+            echo view('admin/common/footerAdmin');
             
         }
          
     }
+
+    public function editSousCategorie($id=null) {
+
+        $sousCategorie = $this->sousCategoriesModel->where('sous_categorie_id',$id)->first();
+
+        $rules = [
+            'name'      => 'required',
+        ];
+
+            if($this->validate($rules)) {
+
+                if (!empty($sousCategorie)) {
+
+                    $dataSave = [
+                        'sous_categorie_name'     => $this->request->getVar('name')
+                    ];
+
+                    $this->sousCategoriesModel->where('sous_categorie_id',$id)->set($dataSave)->update();
+
+                    return redirect()->to('/admin/souscategorie');
+
+                } else {
+
+                    echo "Action Impossible,sous-catégorie vide";
+
+                }
+
+            } else {
+
+                //echo "Erreur de saisie de la catégorie";
+
+            }
+        
+        $data = [
+            'sousCategorie'  => $sousCategorie
+        ];
+
+        echo view('admin/common/headerAdmin');
+        echo view('admin/edit', $data);
+        echo view('admin/common/footerAdmin');
+
+    }
+
    
 }

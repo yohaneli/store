@@ -28,7 +28,7 @@
 
             <li>Nom de la sous-catégorie : <?php echo $tabSousCategorie['sous_categorie_name'] ; ?></li>
 
-            <button type="submit">Modifier</button>
+            <a href="<?php echo base_url('admin/souscategorie/editSousCategorie/'.$tabSousCategorie['sous_categorie_id']) ; ?>"><button type="submit">Modifier</button></a>
 
             <a href="<?php echo base_url('admin/souscategorie/deleteSousCategorie/'.$tabSousCategorie['sous_categorie_id']) ; ?>"><button type="submit">Supprimer</button></a>
 

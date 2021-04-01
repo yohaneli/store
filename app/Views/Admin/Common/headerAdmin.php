@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="modern fixed has-top-menu has-left-sidebar-half" data-style-switcher-options="{'changeLogo': false}">
+<html class="dark" data-style-switcher-options="{'changeLogo': false}">
 	<head>
 
 		<!-- Basic -->

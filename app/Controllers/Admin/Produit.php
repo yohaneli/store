@@ -76,12 +76,11 @@ class Produit extends BaseController {
             $model = new ProductModel();
 
             $data = [
-                'product_name'    => $this->request->getVar('name'),
-                'sous_categorie_id'    => $this->request->getVar('souscategorie'),
-                'category_id '    => $this->request->getVar('categorie'),
-                'product_desc'    => $this->request->getVar('description'),
-                'price'    => $this->request->getVar('price'),
-                'product_image'    => $this->request->getVar('photo'),
+                'product_name'      => $this->request->getVar('name'),
+                'sous_categorie_id' => $this->request->getVar('souscategorie'),
+                'category_id'      => $this->request->getVar('categorie'),
+                'product_desc'      => $this->request->getVar('description'),
+                'price'             => $this->request->getVar('price'),
             ];
 
             $model->save($data);
@@ -100,5 +99,70 @@ class Produit extends BaseController {
         }
 
     }
+
+    public function editProduct($idProduit=null) {
+        				
+		$listeProducts = $this->productsModel->findAll();
+
+        $selectSousCategorie = $this->sousCategoriesModel->findAll();
+
+        $selectCategorie = $this->categoriesModel->findAll();
+        
+        $produit = $this->productsModel->where('product_id',$idProduit)->first();
+
+        $rules = [
+            'name'      	=> 'required|min_length[3]|max_length[30]',
+            'souscategorie' => 'required',
+            'categorie'     => 'required',
+            'description'   => 'required|min_length[3]|max_length[60]',
+            'price'      	=> 'required'
+        ];
+
+            if($this->validate($rules)) {
+
+                if (!empty($produit)) {
+
+                    $dataSave = [
+                        'product_name'      => $this->request->getVar('name'),
+                        'sous_categorie_id' => $this->request->getVar('souscategorie'),
+                        'category_id'       => $this->request->getVar('categorie'),
+                        'product_desc'      => $this->request->getVar('description'),
+                        'price'             => $this->request->getVar('price'),
+                        'product_image'     => $this->request->getVar('photo'),
+                    ];
+
+                    $this->productsModel->where('product_id',$id)->set($dataSave)->update();
+
+                    return redirect()->to('/admin/adminhome');
+
+                } else {
+
+                    echo "Action Impossible,catégorie vide";
+
+                }
+
+            } else {
+
+                //echo "Erreur de saisie de la catégorie";
+
+            }
+    
+        $data = [
+            'produit'  => $produit,
+            'tabCategories' => $selectCategorie,
+			'tabProducts'	=> $listeProducts,
+			'tabSousCategories' => $selectSousCategorie,
+			'usersModel' => $this->usersModel,
+			'categoriesModel' => $this->categoriesModel,
+			'sousCategoriesModel' => $this->sousCategoriesModel,
+        ];
+
+        echo view('admin/common/headerAdmin');
+        echo view('admin/edit', $data);
+        echo view('admin/common/footerAdmin');
+
+    }
+
+    
 
 }
