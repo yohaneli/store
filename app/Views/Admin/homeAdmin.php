@@ -1,47 +1,83 @@
 
-                            <h4 class="header">Listes des produits</h4>
-                                    <?php if (isset($tabProducts)) {  ?>
+<h4 class="header">Listes des produits</h4>                             
+    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list" style="min-width: 550px;">
+        <thead>
+            <tr>
+                <th width="3%"><input type="checkbox" name="select-all" class="select-all checkbox-style-1 p-relative top-2" value="" /></th>
+                <th width="8%">ID du produit</th>
+                <th>Nom du produit</th>
+                <th>Sous-catégorie du produit</th>
+                <th>Catégorie du produit</th>
+                <th>Description du produit</th>
+                <th>Prix du produit</th>
+                <th>Photo du produit</th>
+                <th>Etat de stock du produit</th>
+                <th>Date de création du produit</th>
+                <th></th>
+                <th></th>
+		    </tr>
+	    </thead>
 
-                                        <?php  foreach ($tabProducts as $tabProduct) {  
-                                            
-                                            $categories = $categoriesModel->where('category_id',$tabProduct['category_id'])->first();
+	        <tbody>
 
-                                            $sousCategories = $sousCategoriesModel->where('sous_categorie_id',$tabProduct['sous_categorie_id'])->first();
+                <?php if (isset($tabProducts)) {  ?>
 
-                                            ?>                                    
+                    <?php  foreach ($tabProducts as $tabProduct) {  
+    
+                        $categories = $categoriesModel->where('category_id',$tabProduct['category_id'])->first();
 
-										<ul>
-                                        	<li>Nom du produit : <?php echo $tabProduct['product_name'] ; ?></li>
+                        $sousCategories = $sousCategoriesModel->where('sous_categorie_id',$tabProduct['sous_categorie_id'])->first();
 
-                                        	<li>Catégorie du produit : <?php echo $categories['category_name'] ; ?></li>
+                    ?>                                          
+		
+                        <tr>
 
-											<li>Sous-Catégorie du produit : <?php echo $sousCategories['sous_categorie_name'] ; ?></li>
-                                            
-                                            <li>Description du produit : <?php echo $tabProduct['product_desc'] ; ?></li>
+                            <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
 
-                                        	<li>Prix du produit : <?php echo $tabProduct['price'] ; ?></li>
+                            <td><strong><?php echo $tabProduct['product_id'] ; ?></strong></td>
 
-                                            <li>Photo du produit : <?php if(empty($tabProduct['product_image'])) {?>
+                            <td><strong><?php echo $tabProduct['product_name'] ; ?>></strong></td>
 
-                                            <img src="/images-admin/baseimages/default.png">
+                            <td><strong><?php echo $sousCategories['sous_categorie_name'] ; ?></strong></td>
 
-                                            <?php } ?></li>
+                            <td><strong><?php echo $categories['category_name'] ; ?></strong></td>
 
-                                            <li>Etat du stock du produit : <?php if($tabProduct['available'] == 1) {?>
+                            <td><strong><?php echo $tabProduct['product_desc'] ; ?></strong></td>
 
-                                             DISPONIBLE
+                            <td><strong><?php echo $tabProduct['price'] ; ?></strong></td>
 
-                                            <?php } ?></li>
-                                            
-                                        	<li>Date de création du produit : <?php echo $tabProduct['product_date'] ; ?></li>
+                            <td><strong>
 
-                                            <a href="<?php echo base_url('admin/produit/editProduct/'.$tabProduct['product_id']) ; ?>"><button type="submit">Modifier</button></a>
+                                <?php if(empty($tabProduct['product_image'])) {?>
 
-                                            <a href="<?php echo base_url('admin/adminhome/deleteProduct/'.$tabProduct['product_id']) ; ?>"><button type="submit">Supprimer</button></a>
-                                            
-										</ul>
-                                    
-                                    <?php } ?>
+                                <img src="/images-admin/baseimages/default.png">
 
-                                        <?php } ?> 
+                                <?php } ?>
 
+                            </strong></td>
+
+                            <td><strong>
+
+                                <?php if($tabProduct['available'] == 1) {?>
+
+                                DISPONIBLE
+
+                                <?php } ?>
+
+                            </strong></td>
+
+                            <td><strong><?php echo $tabProduct['product_date'] ; ?></strong></td>
+
+                            <td><a href="<?php echo base_url('admin/produit/editProduct/'.$tabProduct['product_id']) ; ?>"><button type="submit">Modifier</button></a></td>
+
+                            <td><a href="<?php echo base_url('admin/adminhome/deleteProduct/'.$tabProduct['product_id']) ; ?>"><button type="submit">Supprimer</button></a></td>
+                        
+                        </tr>
+
+			        <?php } ?>
+		
+		        <?php } ?>
+		
+	        </tbody>
+
+    </table>

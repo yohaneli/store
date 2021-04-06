@@ -22,10 +22,10 @@ class Categorie extends BaseController {
            'tabCategories' => $listeCategories,
        ];
        
-       echo view('site/common/headerSite',$data);
+       echo view('admin/common/headerAdmin',$data);
        echo "<title>Liste des Catégories - Admin</title>";       
        echo view('admin/categorie',$data);
-       echo view('site/common/footerSite');
+       echo view('admin/common/footerAdmin');
 
    }
 

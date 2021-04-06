@@ -100,7 +100,27 @@
 													<ul class="nav nav-pills w-100" id="mainNav">
 														<li class="dropdown">
 															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('home') ;?>">
-																Home
+																Accueil
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('login') ;?>">
+																Connexion
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('login') ;?>">
+																Inscription
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('moncompte') ;?>">
+																Mon compte
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('login/logout') ;?>">
+																Déconnexion
 															</a>
 														</li>
 													</ul>

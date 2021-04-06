@@ -87,13 +87,31 @@
                                     <div class="header-nav-main header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-3 header-nav-main-sub-effect-1 w-100">
                                         <nav class="collapse w-100">
                                             <ul class="nav nav-pills w-100" id="mainNav">
-                                                <li class="dropdown">
-                                                    <a class="dropdown-item dropdown-toggle" href="<?php echo base_url('home') ;?>">
-                                                        Home
-                                                    </a>
-
-                                                </li>
-                                            
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="<?php echo base_url('home') ;?>">
+                                                    Accueil
+                                                </a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="<?php echo base_url('login') ;?>">
+                                                    Connexion
+                                                </a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="<?php echo base_url('login') ;?>">
+                                                    Inscription
+                                                </a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="<?php echo base_url('moncompte') ;?>">
+                                                    Mon compte
+                                                </a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="<?php echo base_url('login/logout') ;?>">
+                                                    Déconnexion
+                                                </a>
+                                            </li>
                                             </ul>
                                         </nav>
                                     </div>
