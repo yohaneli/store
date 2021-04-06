@@ -14,10 +14,14 @@ class MonCompte extends Controller {
         $userName = strstr($userMail,'@',true) ;
 
         $userName = ucfirst($userName) ;
+
+        $data = [
+            'login' => $userName,
+        ];
         
         echo view('site/common/headerSite');
 		echo "<title>Mon Compte</title>";
-        echo "Bienvenue, ".$userName." ! ";
+        echo view('moncompte',$data);
 		echo view('site/common/footerSite');
 
 

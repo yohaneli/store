@@ -6,7 +6,6 @@
 
 		<meta charset="UTF-8">
 
-		<title>Products | Porto Admin - Responsive HTML5 Template</title>
 		<meta name="keywords" content="HTML5 Admin Template" />
 		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
@@ -60,6 +59,7 @@
 
 		<script src="<?php echo base_url('app-assets-admin/vendor/modernizr/modernizr.js') ; ?>"></script>
 		<script src="<?php echo base_url('app-assets-admin/master/style-switcher/style.switcher.localstorage.js') ; ?>"></script>
+		<script src="<?php echo base_url('app-assets-admin/master/style-switcher/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') ; ?>"></script>
 
 	</head>
 
@@ -95,40 +95,8 @@
 												</div>
 											</li>
 										</ul>
-										<div class="header-nav-features pl-0 ml-1">
-											<div class="header-nav-feature header-nav-features-cart header-nav-features-cart-big d-inline-flex top-2 ml-2">
-												<a href="#" class="header-nav-features-toggle">
-													<img src="<?php echo base_url('images/baseimages/icons/icon-cart-big.svg');?>" height="30" alt="" class="header-nav-top-icon-img">
-													<span class="cart-info">
-														<span class="cart-qty">1</span>
-													</span>
-												</a>
-												<div class="header-nav-features-dropdown" id="headerTopCartDropdown">
-													<ol class="mini-products-list">
-														<li class="item">
-															<a href="#" title="Camera X1000" class="product-image"><img src="<?php echo base_url('images/baseimages/products/product-1.jpg');?>" alt="Camera X1000"></a>
-															<div class="product-details">
-																<p class="product-name">
-																	<a href="#">Camera X1000 </a>
-																</p>
-																<p class="qty-price">
-																	 1X <span class="price">$890</span>
-																</p>
-																<a href="#" title="Remove This Item" class="btn-remove"><i class="fas fa-times"></i></a>
-															</div>
-														</li>
-													</ol>
-													<div class="totals">
-														<span class="label">Total:</span>
-														<span class="price-total"><span class="price">$890</span></span>
-													</div>
-													<div class="actions">
-														<a class="btn btn-dark" href="#">View Cart</a>
-														<a class="btn btn-primary" href="#">Checkout</a>
-													</div>
-												</div>
-											</div>
-										</div>
+										
+										
 									</div>
 								</div>
 							</div>
@@ -152,7 +120,7 @@
 
 														<li class="dropdown">
 															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/adminhome') ;?>">
-																Accueil Admin
+																Accueil
 															</a>
 														</li>
 
@@ -186,6 +154,12 @@
 															</a>
 														</li>
 
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('home') ;?>">
+																Retour au Site
+															</a>
+														</li>
+
 													</ul>
 												</nav>
 											</div>
@@ -200,3 +174,5 @@
 					</div>
 				</div>
 			</header>
+
+			

@@ -2,8 +2,16 @@
 							<div class="col">
 								<section class="card">
 									<header class="card-header">
-						
-										<h2 class="card-title">Créer un produit</h2>
+										<div class="row justify-content-center">
+										
+											<br>
+
+											<h2 class="card-title">Créer un produit</h2>
+										
+											<br>
+
+										</div>  
+
 									</header>
 									<div class="card-body">
                                         

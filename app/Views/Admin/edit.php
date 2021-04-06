@@ -2,7 +2,11 @@
 
     <?php if (isset($categorie['category_id'])) { ?>
 
-    <h4 class="header">Modifier une nouvelle catégorie</h4>
+			<div class="row justify-content-center">
+
+    			<h4 class="header">Modifier une catégorie</h4>
+			
+			</div>  
 
                     <?php if(isset($validation)):?>
 
@@ -26,8 +30,11 @@
 
     <?php if (isset($sousCategorie['sous_categorie_id'])) { ?>
 
-    <h4 class="header">Modifier une sous-catégorie</h4>
+		<div class="row justify-content-center">
 
+			<h4 class="header">Modifier une sous-catégorie</h4>
+
+		</div> 
                     <?php if(isset($validation)):?>
 
                         <div class="alert alert-danger"><?= $validation->listErrors() ?></div>
@@ -54,7 +61,12 @@
 								<section class="card">
 									<header class="card-header">
 						
-										<h2 class="card-title">Modifier un produit</h2>
+									<div class="row justify-content-center">
+
+										<h4 class="header">Modifier un produit</h4>
+
+									</div> 
+
 									</header>
 									<div class="card-body">
                                         

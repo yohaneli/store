@@ -1,4 +1,4 @@
-<title>Connexion / Inscription The Shop</title>	
+<title>Mon Panier</title>
 
 <body data-plugin-page-transition>
 
@@ -127,69 +127,103 @@
         </div>
     </header>
 
-    <div role="main" class="main shop py-4">
 
-        <div class="container py-4">
+    <div role="main" class="main shop pb-4">
 
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-5 mb-5 mb-lg-0">
-                    <h2 class="font-weight-bold text-5 mb-0">Se connecter</h2>
-                    <?php if(session()->getFlashdata('msg')):?>
-                    <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
-                <?php endif;?>
-                    <form action="/login/auth" id="frmSignIn" method="post" class="needs-validation">
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label class="text-color-dark text-3">Adresse email <span class="text-color-danger">*</span></label>
-                                <input type="email" name="email" value="<?= set_value('email') ?>" class="form-control form-control-lg text-4" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label class="text-color-dark text-3">Mot de passe <span class="text-color-danger">*</span></label>
-                                <input type="password" name="password" value="" class="form-control form-control-lg text-4" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <button type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">Login</button>
+				<div class="container">
 
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-6 col-lg-5">
-                    <h2 class="font-weight-bold text-5 mb-0">S'incrire</h2>
-                    <?php if(isset($validation)):?>
-                    <div class="alert alert-danger"><?= $validation->listErrors() ?></div>
-                <?php endif;?>
-                    <form action="/register/save" id="frmSignUp" method="post">
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label class="text-color-dark text-3">Adresse email <span class="text-color-danger">*</span></label>
-                                <input type="email" name="email" value="<?= set_value('email') ?>" class="form-control form-control-lg text-4" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label class="text-color-dark text-3">Mot de passe <span class="text-color-danger">*</span></label>
-                                <input type="password" name="password" value="" class="form-control form-control-lg text-4" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <p class="text-2 mb-2">Vos données personnelles seront utilisées pour aider vôtre expérience sur The Shop, pour gérer les modalités d'accès à vôtre compte, ou toute autre informations voici nos <a href="#" class="text-decoration-none">Conditions générales de vente et de gestion de données personnelles.</a></p>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <button type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">S'inscrire</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+					<div class="row">
+						<div class="col">
+							<ul class="breadcrumb font-weight-bold text-6 justify-content-center my-5">
+								<li class="text-transform-none mr-2">
+									<a href="<?php echo base_url('panier') ;?>" class="text-decoration-none text-color-primary">Panier</a>
+								</li>
+								<li class="text-transform-none text-color-grey-lighten mr-2">
+									<a href="#" class="text-decoration-none text-color-grey-lighten text-color-hover-primary">Paiement</a>
+								</li>
+								<li class="text-transform-none text-color-grey-lighten">
+									<a href="<?php echo base_url('commande') ;?>" class="text-decoration-none text-color-grey-lighten text-color-hover-primary">Validation de la commande</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row pb-4 mb-5">
+						<div class="col-lg-8 mb-5 mb-lg-0">
+							<form method="post" action="">
+								<div class="table-responsive">
+									<table class="shop_table cart">
+										<thead>
+											<tr class="text-color-dark">
+												<th class="product-thumbnail" width="15%">
+													&nbsp;
+												</th>
+												<th class="product-name text-uppercase" width="30%">
+													Produit
+												</th>
+												<th class="product-price text-uppercase" width="15%">
+													Prix
+												</th>
+												
+											</tr>
+										</thead>
+										<tbody>
 
-        </div>
+											<tr class="cart_table_item">
+												<td class="product-thumbnail">
+													<div class="product-thumbnail-wrapper">
+														<a href="#" class="product-thumbnail-remove" title="Remove Product">
+														</a>
+														<a href="shop-product-sidebar-right.html" class="product-thumbnail-image" title="Photo Camera">
+															<img width="90" height="90" alt="" class="img-fluid" src="/images-admin/baseimages/default.png">
+														</a>
+													</div>
+												</td>
+												<td class="product-name">
+													<a href="shop-product-sidebar-right.html" class="font-weight-semi-bold text-color-dark text-color-hover-primary text-decoration-none">Photo Camera</a>
+												</td>
+												<td class="product-price">
+													<span class="amount font-weight-medium text-color-grey">59€</span>
+												</td>
+												
+											</tr>
 
-    </div>
+											
+										</tbody>
+									</table>
+								</div>
+							</form>
+						</div>
+						<div class="col-lg-4">
+							<div class="card border-width-3 border-radius-0 border-color-hover-dark" data-plugin-sticky data-plugin-options="{'minWidth': 991, 'containerSelector': '.row', 'padding': {'top': 85}}">
+								<div class="card-body">
+									<h4 class="font-weight-bold text-uppercase text-4 mb-3">Total Panier</h4>
+									<table class="shop_table cart-totals mb-4">
+										<tbody>
+											<tr class="cart-subtotal">
+												<td class="border-top-0">
+													<strong class="text-color-dark">Sous-total</strong>
+												</td>
+												<td class="border-top-0 text-right">
+													<strong><span class="amount font-weight-medium">59€</span></strong>
+												</td>
+											</tr>
+											
+											<tr class="total">
+												<td>
+													<strong class="text-color-dark text-3-5">Total</strong>
+												</td>
+												<td class="text-right">
+													<strong class="text-color-dark"><span class="amount text-color-dark text-5">59€</span></strong>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<a href="shop-checkout.html" class="btn btn-dark btn-modern btn-block text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Paiement</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>

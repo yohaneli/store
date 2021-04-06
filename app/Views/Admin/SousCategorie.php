@@ -14,9 +14,13 @@
             <button type="submit" class="btn btn-primary">Créer une sous-catégorie</button>
 
         </form>
-        <br>
+		<div class="row justify-content-center">
 
-    <h4 class="header">Listes des sous-catégories</h4>
+<br>
+<h4 class="header">Listes des sous-catégories</h4>
+<br>
+</div>  
+
 
 <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list" style="min-width: 550px;">
 	<thead>

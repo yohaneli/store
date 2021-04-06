@@ -1,6 +1,5 @@
 <title>Accueil The Shop</title>	
 
-
 <body data-plugin-page-transition>
 
 		<div class="body">
@@ -38,53 +37,34 @@
 										<ul class="header-extra-info">
 											<li class="ml-0 ml-xl-4">
 												<div class="header-extra-info-icon">
-													<a href="#" class="text-decoration-none text-color-dark text-color-hover-primary text-2">
+													<a href="<?php echo base_url('moncompte') ;?>" class="text-decoration-none text-color-dark text-color-hover-primary text-2">
 														<i class="icons icon-user"></i>
 													</a>
 												</div>
 											</li>
 										</ul>
 										<div class="header-nav-features pl-0 ml-1">
-											<div class="header-nav-feature header-nav-features-cart header-nav-features-cart-big d-inline-flex top-2 ml-2">
-												<a href="#" class="header-nav-features-toggle">
-													<img src="<?php echo base_url('images/baseimages/icons/icon-cart-big.svg');?>" height="30" alt="" class="header-nav-top-icon-img">
-													<span class="cart-info">
-														<span class="cart-qty">1</span>
-													</span>
-												</a>
-												<div class="header-nav-features-dropdown" id="headerTopCartDropdown">
-													<ol class="mini-products-list">
-														<li class="item">
-															<a href="#" title="Camera X1000" class="product-image"><img src="<?php echo base_url('images/baseimages/products/product-1.jpg');?>" alt="Camera X1000"></a>
-															<div class="product-details">
-																<p class="product-name">
-																	<a href="#">Camera X1000 </a>
-																</p>
-																<p class="qty-price">
-																	 1X <span class="price">$890</span>
-																</p>
-																<a href="#" title="Remove This Item" class="btn-remove"><i class="fas fa-times"></i></a>
-															</div>
-														</li>
-													</ol>
-													<div class="totals">
-														<span class="label">Total:</span>
-														<span class="price-total"><span class="price">$890</span></span>
-													</div>
-													<div class="actions">
-														<a class="btn btn-dark" href="#">View Cart</a>
-														<a class="btn btn-primary" href="#">Checkout</a>
-													</div>
-												</div>
-											</div>
-										</div>
+                                    <div class="header-nav-feature header-nav-features-cart header-nav-features-cart-big d-inline-flex top-2 ml-2">
+                                        <a href="#" class="header-nav-features-toggle">
+                                        <img src="<?php echo base_url('images/baseimages/icons/icon-cart-big.svg');?>" height="30" alt="" class="header-nav-top-icon-img">
+                                            <span class="cart-info">
+                                                <span class="cart-qty">1</span>
+                                            </span>
+                                        </a>
+                                        <div class="header-nav-features-dropdown" id="headerTopCartDropdown">
+
+                                            <div class="actions">
+                                                <a class="btn btn-dark" href="<?php echo base_url('panier') ;?>">Panier</a>
+                                                <a class="btn btn-primary" href="#">Payer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 									</div>
 								</div>
 							</div>
 							<div class="header-column justify-content-end">
 								<div class="header-row">
-
-
 								</div>
 							</div>
 						</div>
@@ -103,6 +83,16 @@
 																Accueil
 															</a>
 														</li>
+
+														<?php  
+														
+														$userId = session()->get('user_id');
+
+															if (empty($userId)) {
+														
+														?>
+ 
+
 														<li class="dropdown">
 															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('login') ;?>">
 																Connexion
@@ -113,16 +103,28 @@
 																Inscription
 															</a>
 														</li>
+
+														<?php } ?>
+
 														<li class="dropdown">
 															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('moncompte') ;?>">
 																Mon compte
 															</a>
 														</li>
+
 														<li class="dropdown">
 															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('login/logout') ;?>">
 																Déconnexion
 															</a>
 														</li>
+
+
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/adminhome') ;?>">
+																Admin
+															</a>
+														</li>
+
 													</ul>
 												</nav>
 											</div>
@@ -144,9 +146,19 @@
 
 					<div class="masonry-loader masonry-loader-showing">
 						<div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
-							
+						
 
 							<div class="col-12 col-sm-6 col-lg-3">
+						
+							<?php if (isset($tabProducts)) {  ?>
+
+								<?php  foreach ($tabProducts as $tabProduct) {  
+
+									$categories = $categoriesModel->where('category_id',$tabProduct['category_id'])->first();
+
+									$sousCategories = $sousCategoriesModel->where('sous_categorie_id',$tabProduct['sous_categorie_id'])->first();
+
+								?>       
 								<div class="product mb-0">
 									<div class="product-thumb-info border-0 mb-3">
 
@@ -162,283 +174,39 @@
 
 										<a href="shop-product-sidebar-left.html">
 											<div class="product-thumb-info-image">
-												<img alt="" class="img-fluid" src="<?php echo base_url('images/baseimages/products/product-grey-1.jpg');?>">
+
+											<?php if(empty($tabProduct['product_image'])) {?>
+
+											<img src="/images-admin/baseimages/default.png">
+
+											<?php } ?>
 
 											</div>
 										</a>
 									</div>
+
 									<div class="d-flex justify-content-between">
 										<div>
-											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">electronics</a>
-											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary">Photo Camera</a></h3>
-										</div>
-										<a href="#" class="text-decoration-none text-color-default text-color-hover-dark text-4"><i class="far fa-heart"></i></a>
-									</div>
-									<div title="Rated 5 out of 5">
-										<input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
-									</div>
+											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1"><?php echo $categories['category_name'] ; ?></a>
+											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary"><?php echo $tabProduct['product_name'] ; ?></a></h3>
+
 									<p class="price text-5 mb-3">
-										<span class="sale text-color-dark font-weight-semi-bold">$69,00</span>
-										<span class="amount">$59,00</span>
+										<span class="amount"><?php echo $tabProduct['price']." euros " ; ?></span>
 									</p>
+
+									<button type="submit">Ajouter au panier</button>
+									
+
 								</div>
+
 							</div>
 
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="product mb-0">
-									<div class="product-thumb-info border-0 mb-3">
-
-										<div class="addtocart-btn-wrapper">
-											<a href="shop-cart.html" class="text-decoration-none addtocart-btn" data-tooltip data-original-title="Add to Cart">
-												<i class="icons icon-bag"></i>
-											</a>
-										</div>
-
-										<a href="shop-product-sidebar-left.html">
-											<div class="product-thumb-info-image product-thumb-info-image-effect">
-												<img alt="" class="img-fluid" src="<?php echo base_url('images/baseimages/products/product-grey-7.jpg');?>">
-
-													<img alt="" class="img-fluid" src="<?php echo base_url('images/baseimages/products/product-grey-7-2.jpg');?>">
-
-											</div>
-										</a>
-									</div>
-									<div class="d-flex justify-content-between">
-										<div>
-											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">accessories</a>
-											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary">Porto Headphone</a></h3>
-										</div>
-										<a href="#" class="text-decoration-none text-color-default text-color-hover-dark text-4"><i class="far fa-heart"></i></a>
-									</div>
-									<div title="Rated 5 out of 5">
-										<input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
-									</div>
-									<p class="price text-5 mb-3">
-										<span class="sale text-color-dark font-weight-semi-bold">$199,00</span>
-										<span class="amount">$99,00</span>
-									</p>
-								</div>
-							</div>
-
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="product mb-0">
-									<div class="product-thumb-info border-0 mb-3">
-
-										<div class="addtocart-btn-wrapper">
-											<a href="shop-cart.html" class="text-decoration-none addtocart-btn" data-tooltip data-original-title="Add to Cart">
-												<i class="icons icon-bag"></i>
-											</a>
-										</div>
-
-										<a href="shop-product-sidebar-left.html">
-											<div class="product-thumb-info-image">
-												<img alt="" class="img-fluid" src="<?php echo base_url('images/baseimages/products/product-grey-2.jpg');?>">
-
-											</div>
-										</a>
-									</div>
-									<div class="d-flex justify-content-between">
-										<div>
-											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">sports</a>
-											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary">Golf Bag</a></h3>
-										</div>
-										<a href="#" class="text-decoration-none text-color-default text-color-hover-dark text-4"><i class="far fa-heart"></i></a>
-									</div>
-									<div title="Rated 5 out of 5">
-										<input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
-									</div>
-									<p class="price text-5 mb-3">
-										<span class="sale text-color-dark font-weight-semi-bold">$29,00</span>
-										<span class="amount">$19,00</span>
-									</p>
-								</div>
-							</div>
-
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="product mb-0">
-									<div class="product-thumb-info border-0 mb-3">
-
-										<div class="addtocart-btn-wrapper">
-											<a href="shop-cart.html" class="text-decoration-none addtocart-btn" data-tooltip data-original-title="Add to Cart">
-												<i class="icons icon-bag"></i>
-											</a>
-										</div>
-
-										<a href="shop-product-sidebar-left.html">
-											<div class="product-thumb-info-image">
-												<img alt="" class="img-fluid" src="<?php echo base_url('images/baseimages/products/product-grey-3.jpg');?>">
-
-											</div>
-										</a>
-									</div>
-									<div class="d-flex justify-content-between">
-										<div>
-											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">sports</a>
-											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary">Workout</a></h3>
-										</div>
-										<a href="#" class="text-decoration-none text-color-default text-color-hover-dark text-4"><i class="far fa-heart"></i></a>
-									</div>
-									<div title="Rated 5 out of 5">
-										<input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
-									</div>
-									<p class="price text-5 mb-3">
-										<span class="sale text-color-dark font-weight-semi-bold">$40,00</span>
-										<span class="amount">$30,00</span>
-									</p>
-								</div>
-							</div>
-
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="product mb-0">
-									<div class="product-thumb-info border-0 mb-3">
-
-										<div class="addtocart-btn-wrapper">
-											<a href="shop-cart.html" class="text-decoration-none addtocart-btn" data-tooltip data-original-title="Add to Cart">
-												<i class="icons icon-bag"></i>
-											</a>
-										</div>
-
-										<a href="shop-product-sidebar-left.html">
-											<div class="product-thumb-info-image">
-												<img alt="" class="img-fluid" src="<?php echo base_url('images/baseimages/products/product-grey-4.jpg');?>">
-
-											</div>
-										</a>
-									</div>
-									<div class="d-flex justify-content-between">
-										<div>
-											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">accessories</a>
-											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary">Luxury Bag</a></h3>
-										</div>
-										<a href="#" class="text-decoration-none text-color-default text-color-hover-dark text-4"><i class="far fa-heart"></i></a>
-									</div>
-									<div title="Rated 5 out of 5">
-										<input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
-									</div>
-									<p class="price text-5 mb-3">
-										<span class="sale text-color-dark font-weight-semi-bold">$99,00</span>
-										<span class="amount">$79,00</span>
-									</p>
-								</div>
-							</div>
-
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="product mb-0">
-									<div class="product-thumb-info border-0 mb-3">
-
-										<div class="addtocart-btn-wrapper">
-											<a href="shop-cart.html" class="text-decoration-none addtocart-btn" data-tooltip data-original-title="Add to Cart">
-												<i class="icons icon-bag"></i>
-											</a>
-										</div>
-
-
-										<a href="shop-product-sidebar-left.html">
-											<div class="product-thumb-info-image">
-												<img alt="" class="img-fluid" src="<?php echo base_url('images/baseimages/products/product-grey-5.jpg');?>">
-
-											</div>
-										</a>
-									</div>
-									<div class="d-flex justify-content-between">
-										<div>
-											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">accessories</a>
-											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary">Styled Bag</a></h3>
-										</div>
-										<a href="#" class="text-decoration-none text-color-default text-color-hover-dark text-4"><i class="far fa-heart"></i></a>
-									</div>
-									<div title="Rated 5 out of 5">
-										<input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
-									</div>
-									<p class="price text-5 mb-3">
-										<span class="sale text-color-dark font-weight-semi-bold">$199,00</span>
-										<span class="amount">$119,00</span>
-									</p>
-								</div>
-							</div>
-
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="product mb-0">
-									<div class="product-thumb-info border-0 mb-3">
-
-										<div class="addtocart-btn-wrapper">
-											<a href="shop-cart.html" class="text-decoration-none addtocart-btn" data-tooltip data-original-title="Add to Cart">
-												<i class="icons icon-bag"></i>
-											</a>
-										</div>
-
-										<a href="shop-product-sidebar-left.html">
-											<div class="product-thumb-info-image">
-												<img alt="" class="img-fluid" src="<?php echo base_url('images/baseimages/products/product-grey-6.jpg');?>">
-
-											</div>
-										</a>
-									</div>
-									<div class="d-flex justify-content-between">
-										<div>
-											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">hat</a>
-											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary">Blue Hat</a></h3>
-										</div>
-										<a href="#" class="text-decoration-none text-color-default text-color-hover-dark text-4"><i class="far fa-heart"></i></a>
-									</div>
-									<div title="Rated 5 out of 5">
-										<input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
-									</div>
-									<p class="price text-5 mb-3">
-										<span class="sale text-color-dark font-weight-semi-bold">$299,00</span>
-										<span class="amount">$289,00</span>
-									</p>
-								</div>
-							</div>
-
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="product mb-0">
-									<div class="product-thumb-info border-0 mb-3">
-
-										<div class="addtocart-btn-wrapper">
-											<a href="shop-cart.html" class="text-decoration-none addtocart-btn" data-tooltip data-original-title="Add to Cart">
-												<i class="icons icon-bag"></i>
-											</a>
-										</div>
-
-
-										<a href="shop-product-sidebar-left.html">
-											<div class="product-thumb-info-image">
-												<img alt="" class="img-fluid" src="<?php echo base_url('images/baseimages/products/product-grey-8.jpg');?>">
-
-											</div>
-										</a>
-									</div>
-									<div class="d-flex justify-content-between">
-										<div>
-											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">accessories</a>
-											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary">Adventurer Bag</a></h3>
-										</div>
-										<a href="#" class="text-decoration-none text-color-default text-color-hover-dark text-4"><i class="far fa-heart"></i></a>
-									</div>
-									<div title="Rated 5 out of 5">
-										<input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
-									</div>
-									<p class="price text-5 mb-3">
-										<span class="sale text-color-dark font-weight-semi-bold">$99,00</span>
-										<span class="amount">$79,00</span>
-									</p>
-								</div>
-							</div>
-
-
+							
 						</div>
-						<div class="row mt-4">
-							<div class="col">
-								<ul class="pagination float-right">
-									<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
-									<li class="page-item active"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
-								</ul>
-							</div>
-						</div>
+						<?php } ?>
+	
+						<?php } ?>
+						
 					</div>
 
 				</div>

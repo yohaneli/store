@@ -54,3 +54,4 @@
 		<script src="<?php echo base_url('app-assets/vendor/modernizr/modernizr.min.js') ;?>"></script>
 
 	</head>
+

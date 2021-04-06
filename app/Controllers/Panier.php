@@ -7,7 +7,7 @@ use App\Models\SousCategorieModel;
 use App\Models\ProductModel;
 use App\Models\UserModel;
 
-class Home extends BaseController {
+class Panier extends BaseController {
 
 	public $categoriesModel = null ;
 
@@ -48,7 +48,7 @@ class Home extends BaseController {
 		];
 
 		echo view('site/common/headerSite');
-		echo view('index',$data);
+		echo view('site/panier',$data);
 		echo view('site/common/footerSite');
 
 	}

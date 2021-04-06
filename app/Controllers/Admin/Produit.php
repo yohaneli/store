@@ -47,10 +47,10 @@ class Produit extends BaseController {
 
 		];
 		
-        echo view('site/common/headerSite');
+        echo view('admin/common/headerAdmin');
         echo "<title>Créer un produit</title>";
         echo view('admin/addproduct',$data);
-        echo view('site/common/footerSite');
+        echo view('admin/common/footerAdmin');
 
     }
 
@@ -91,10 +91,10 @@ class Produit extends BaseController {
 
             $data['validation'] = $this->validator;
 
-            echo view('site/common/headerSite');
+            echo view('admin/common/headerAdmin');
             echo "<title>Créer un produit</title>";
             echo view('admin/addproduct',$data);
-            echo view('site/common/footerSite');
+            echo view('admin/common/footerAdmin');
 
         }
 

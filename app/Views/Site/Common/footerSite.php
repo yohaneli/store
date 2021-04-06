@@ -23,17 +23,7 @@
 									 Mer - Ven / 07h30 - 13h
 								</li>
 							</ul>
-							<ul class="social-icons social-icons-clean-with-border social-icons-medium">
-								<li class="social-icons-instagram">
-									<a href="http://www.instagram.com/" class="no-footer-css" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-								</li>
-								<li class="social-icons-twitter mx-2">
-									<a href="http://www.twitter.com/" class="no-footer-css" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-								</li>
-								<li class="social-icons-facebook">
-									<a href="http://www.facebook.com/" class="no-footer-css" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-								</li>
-							</ul>
+							
 						</div>
 						<div class="col-md-6 col-lg-3 mb-5 mb-md-0">
 							<h5 class="text-4 text-color-light mb-3">POPULAR TAGS</h5>
