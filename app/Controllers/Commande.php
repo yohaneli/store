@@ -6,6 +6,8 @@ use App\Models\CategorieModel;
 use App\Models\SousCategorieModel;
 use App\Models\ProductModel;
 use App\Models\UserModel;
+use App\Models\PanierModel;
+use App\Models\CommandeModel;
 
 class Commande extends BaseController {
 

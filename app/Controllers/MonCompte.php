@@ -26,5 +26,21 @@ class MonCompte extends Controller {
 
 
     }
+
+    public function mailTest() {
+		
+        $email = \Config\Services::email();
+    
+        $email->setFrom('yohan.elisabeth.p@gmail.com', 'Yohan');
+        $email->setTo('yohan.elisabeth@outlook.fr');
+        $email->setCC('yohan.elisabeth@outlook.fr');
+    
+        $email->setSubject('Email Test');
+        $email->setMessage('Testing the email class.');
+    
+        $email->send();
+    
+    
+        }
     
 }

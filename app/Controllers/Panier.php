@@ -6,6 +6,7 @@ use App\Models\CategorieModel;
 use App\Models\SousCategorieModel;
 use App\Models\ProductModel;
 use App\Models\UserModel;
+use App\Models\PanierModel;
 
 class Panier extends BaseController {
 
@@ -17,6 +18,8 @@ class Panier extends BaseController {
 
 	public $productsModel = null ;
 
+	public $paniersModel = null ;
+
 		public function __construct() {
 
 			$this->categoriesModel = new CategorieModel();
@@ -26,6 +29,8 @@ class Panier extends BaseController {
 			$this->usersModel = new UserModel();
 
 			$this->productsModel = new ProductModel();
+
+			$this->paniersModel = new PanierModel();
 
 		}
 
@@ -37,19 +42,56 @@ class Panier extends BaseController {
 		
 		$listeProducts = $this->productsModel->findAll();
 
+		$session = session();
+
+		$userId = $session->get('user_id') ;
+
+			if (isset($userId)) {
+
+				$panier = $this->paniersModel->where('user_id',$userId)->findAll();
+
+			}
+
 		$data = [
-			'tabCategories' => $listeCategories,
-			'tabProducts'	=> $listeProducts,
-			'tabSousCategories' => $listeSousCategories,
-			'usersModel' => $this->usersModel,
-			'categoriesModel' => $this->categoriesModel,
-			'sousCategoriesModel' => $this->sousCategoriesModel,
+			'tabCategories'		 => $listeCategories,
+			'tabProducts'		 => $listeProducts,
+			'tabSousCategories'  => $listeSousCategories,
+			'usersModel' 		 => $this->usersModel,
+			'tabPaniers' 		 => $panier,
+			'productsModel' 	 => $this->productsModel,
 
 		];
 
 		echo view('site/common/headerSite');
 		echo view('site/panier',$data);
 		echo view('site/common/footerSite');
+
+	}
+
+	public function createPanier($id=null) {
+
+		$paniers = $this->paniersModel->findAll();
+
+		$produits = $this->productsModel->findAll();
+
+		$users = $this->usersModel->findAll();
+
+		$session = session();
+
+		$userId = $session->get('user_id');
+
+			if (isset($userId)) {
+
+			$elementsPanier = [
+				"product_id"	=> $id,
+				"user_id"		=> $userId
+			];
+
+			$this->paniersModel->save($elementsPanier);
+
+			} 
+			
+			return redirect()->to('/panier');
 
 	}
 	

@@ -122,9 +122,7 @@
                 <li class="text-transform-none mr-2">
                     <a href="shop-cart.html" class="text-decoration-none text-color-dark text-color-hover-primary">Panier</a>
                 </li>
-                <li class="text-transform-none text-color-dark mr-2">
-                    <a href="shop-checkout.html" class="text-decoration-none text-color-dark text-color-hover-primary">Paiement</a>
-                </li>
+               
                 <li class="text-transform-none text-color-dark">
                     <a href="shop-order-complete.html" class="text-decoration-none text-color-primary">Validation de la commande</a>
                 </li>

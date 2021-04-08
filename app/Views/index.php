@@ -104,7 +104,7 @@
 															</a>
 														</li>
 
-														<?php } ?>
+														<?php } else { ?>
 
 														<li class="dropdown">
 															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('moncompte') ;?>">
@@ -117,13 +117,8 @@
 																Déconnexion
 															</a>
 														</li>
-
-
-														<li class="dropdown">
-															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/adminhome') ;?>">
-																Admin
-															</a>
-														</li>
+														
+														<?php } ?>
 
 													</ul>
 												</nav>
@@ -194,7 +189,7 @@
 										<span class="amount"><?php echo $tabProduct['price']." euros " ; ?></span>
 									</p>
 
-									<button type="submit">Ajouter au panier</button>
+									<a href="<?php echo base_url('panier/createPanier/'.$tabProduct['product_id']) ; ?>"><button type="submit">Ajouter au panier</button></a>
 									
 
 								</div>

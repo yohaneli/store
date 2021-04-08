@@ -138,9 +138,7 @@
 								<li class="text-transform-none mr-2">
 									<a href="<?php echo base_url('panier') ;?>" class="text-decoration-none text-color-primary">Panier</a>
 								</li>
-								<li class="text-transform-none text-color-grey-lighten mr-2">
-									<a href="#" class="text-decoration-none text-color-grey-lighten text-color-hover-primary">Paiement</a>
-								</li>
+								
 								<li class="text-transform-none text-color-grey-lighten">
 									<a href="<?php echo base_url('commande') ;?>" class="text-decoration-none text-color-grey-lighten text-color-hover-primary">Validation de la commande</a>
 								</li>
@@ -167,6 +165,18 @@
 											</tr>
 										</thead>
 										<tbody>
+                                                        <?php if (isset($tabPaniers)) { ?>
+
+                                                            <?php foreach($tabPaniers as $panier) { 
+                                                            
+                                                            $produit = $productsModel->where("product_id",$panier['product_id'])->first();
+                                                            
+                                                            $total = 0;
+
+                                                            $total += $produit['price'] ;
+                                                                
+                                                            ?>
+
 
 											<tr class="cart_table_item">
 												<td class="product-thumbnail">
@@ -179,14 +189,16 @@
 													</div>
 												</td>
 												<td class="product-name">
-													<a href="shop-product-sidebar-right.html" class="font-weight-semi-bold text-color-dark text-color-hover-primary text-decoration-none">Photo Camera</a>
+													<a href="shop-product-sidebar-right.html" class="font-weight-semi-bold text-color-dark text-color-hover-primary text-decoration-none"><?php echo $produit['product_name'] ; ?></a>
 												</td>
 												<td class="product-price">
-													<span class="amount font-weight-medium text-color-grey">59€</span>
+													<span class="amount font-weight-medium text-color-grey"><?php echo $produit['price'] ; ?>€</span>
 												</td>
 												
 											</tr>
+                                                            <?php } ?>
 
+                                                        <?php } ?>
 											
 										</tbody>
 									</table>
@@ -199,26 +211,18 @@
 									<h4 class="font-weight-bold text-uppercase text-4 mb-3">Total Panier</h4>
 									<table class="shop_table cart-totals mb-4">
 										<tbody>
-											<tr class="cart-subtotal">
-												<td class="border-top-0">
-													<strong class="text-color-dark">Sous-total</strong>
-												</td>
-												<td class="border-top-0 text-right">
-													<strong><span class="amount font-weight-medium">59€</span></strong>
-												</td>
-											</tr>
 											
 											<tr class="total">
 												<td>
 													<strong class="text-color-dark text-3-5">Total</strong>
 												</td>
 												<td class="text-right">
-													<strong class="text-color-dark"><span class="amount text-color-dark text-5">59€</span></strong>
+													<strong class="text-color-dark"><span class="amount text-color-dark text-5"><?php echo $total ?>€</span></strong>
 												</td>
 											</tr>
 										</tbody>
 									</table>
-									<a href="shop-checkout.html" class="btn btn-dark btn-modern btn-block text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Paiement</a>
+									<a href="<?php echo base_url('commande') ;?>" class="btn btn-dark btn-modern btn-block text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Valider la commande</a>
 								</div>
 							</div>
 						</div>

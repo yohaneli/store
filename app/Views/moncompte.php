@@ -98,7 +98,7 @@
                                                     </a>
                                                 </li>
 
-                                                <?php } ?>
+                                                <?php } else { ?>
 
                                                 <li class="dropdown">
                                                     <a class="dropdown-item dropdown-toggle" href="<?php echo base_url('moncompte') ;?>">
@@ -111,6 +111,8 @@
                                                         Déconnexion
                                                     </a>
                                                 </li>
+
+                                                <?php } ?>
 
                                             </ul>
                                         </nav>
@@ -143,6 +145,11 @@
                     Si vous souhaitez accèder au module Adminstrateur, cliquez <a href="<?php echo base_url('admin/adminhome') ;?>">ici</a>
                     
                     <?php } ?>
+                    
+                    <br>
+
+
+                                                <!-- <a class="btn btn-dark" href="<?php //echo base_url('moncompte/mailtest') ;?>">Send Mail</a> -->
 
                 </div>
             </div>
