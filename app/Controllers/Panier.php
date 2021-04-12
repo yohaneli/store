@@ -46,12 +46,26 @@ class Panier extends BaseController {
 
 		$userId = $session->get('user_id') ;
 
-			if (isset($userId)) {
+		$user = $this->usersModel->where('user_id',$userId)->first();
+
+			if($userId) {
 
 				$panier = $this->paniersModel->where('user_id',$userId)->findAll();
 
-			}
+			} else {
 
+				$cookie = $this->request->getCookie('TheCookieName');
+
+				if($cookie) {
+
+					$user = $this->usersModel->where('cookie_key',$cookie)->first();
+
+					$panier = $this->paniersModel->where('user_id',$user['user_id'])->findAll();
+
+				}
+
+			}
+		
 		$data = [
 			'tabCategories'		 => $listeCategories,
 			'tabProducts'		 => $listeProducts,

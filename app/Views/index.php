@@ -140,39 +140,34 @@
 				<div class="container">
 
 					<div class="masonry-loader masonry-loader-showing">
-						<div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
-						
 
-							<div class="col-12 col-sm-6 col-lg-3">
+						<div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
+									
+							<div class="row">
 						
-							<?php if (isset($tabProducts)) {  ?>
+								<?php if (isset($tabProducts)) {  ?>
 
 								<?php  foreach ($tabProducts as $tabProduct) {  
-
+									
 									$categories = $categoriesModel->where('category_id',$tabProduct['category_id'])->first();
-
+									
 									$sousCategories = $sousCategoriesModel->where('sous_categorie_id',$tabProduct['sous_categorie_id'])->first();
+									
+									?>       
+								<div class="col-12 col-sm-6 col-lg-3">
 
-								?>       
 								<div class="product mb-0">
+
 									<div class="product-thumb-info border-0 mb-3">
 
-										<div class="product-thumb-info-badges-wrapper">
-
-										</div>
-
-										<div class="addtocart-btn-wrapper">
-											<a href="shop-cart.html" class="text-decoration-none addtocart-btn" data-tooltip data-original-title="Add to Cart">
-												<i class="icons icon-bag"></i>
-											</a>
-										</div>
-
+									
 										<a href="shop-product-sidebar-left.html">
+
 											<div class="product-thumb-info-image">
 
 											<?php if(empty($tabProduct['product_image'])) {?>
 
-											<img src="/images-admin/baseimages/default.png">
+											<img class="img-fluid" alt="" src="/images-admin/baseimages/products/product-1.jpg">
 
 											<?php } ?>
 
@@ -181,26 +176,34 @@
 									</div>
 
 									<div class="d-flex justify-content-between">
+
 										<div>
+
 											<a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1"><?php echo $categories['category_name'] ; ?></a>
+
 											<h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="shop-product-sidebar-right.html" class="text-color-dark text-color-hover-primary"><?php echo $tabProduct['product_name'] ; ?></a></h3>
+										
+										</div>
 
-									<p class="price text-5 mb-3">
-										<span class="amount"><?php echo $tabProduct['price']." euros " ; ?></span>
-									</p>
+										<p class="price text-5 mb-3">
 
-									<a href="<?php echo base_url('panier/createPanier/'.$tabProduct['product_id']) ; ?>"><button type="submit">Ajouter au panier</button></a>
-									
+											<span class="amount"><?php echo $tabProduct['price']." € " ; ?></span>
+
+										</p>
+
+										<a href="<?php echo base_url('panier/createPanier/'.$tabProduct['product_id']) ; ?>"><button type="submit">Ajouter au panier</button></a>
+
+									</div>	
 
 								</div>
 
 							</div>
 
 							
-						</div>
 						<?php } ?>
 	
 						<?php } ?>
+						</div>
 						
 					</div>
 

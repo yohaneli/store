@@ -6,6 +6,6 @@ class CommandeModel extends Model {
 
     protected $table = 'commande';
 
-    protected $allowedFields = ['commande_id','user_id','panier_id','commande_total','commande_mode_paiement','commande_date'];
+    protected $allowedFields = ['commande_id','user_id','commande_total','commande_mode_paiement','etat','commande_date'];
 
 }

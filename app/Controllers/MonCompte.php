@@ -3,7 +3,7 @@
 use CodeIgniter\Controller;
 
  
-class MonCompte extends Controller {
+class MonCompte extends BaseController {
 
     public function index() {
 

@@ -3,7 +3,7 @@
 use CodeIgniter\Controller;
 use App\Models\UserModel;
  
-class Register extends Controller{ 
+class Register extends BaseController{ 
 
     public function index() {
 

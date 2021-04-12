@@ -1,9 +1,10 @@
 <?php namespace App\Controllers;
  
 use CodeIgniter\Controller;
+use App\Controllers\BaseController;
 use App\Models\UserModel;
  
-class Login extends Controller {
+class Login extends BaseController {
 
     public function index() {
 
@@ -38,10 +39,44 @@ class Login extends Controller {
                     $ses_data = [
                         'user_id'       => $data['user_id'],
                         'user_email'    => $data['user_email'],
-                        'logged_in'     => TRUE
+                        'logged_in'     => TRUE,
                     ];
 
                     $session->set($ses_data);
+
+                    //dd($ses_data);
+
+                    if (empty($data['cookie_key'])) {
+
+                    $cookie = [
+                        'name'   => 'TheCookieName',
+                        'value'  => sha1(md5(microtime(true).mt_rand(1000,9000))),
+                        'expire' => '86500'
+                    ];
+                
+                    $this->response->setCookie($cookie)->send();
+
+                    $userCookie = $this->response->getCookie('TheCookieName');
+
+                    $dataCookie =[
+                        'cookie_key'    => $userCookie['value']
+                    ];
+
+
+                            $model->where('user_id',$data['user_id'])->set($dataCookie)->update();
+
+                        } else {
+                            
+                            $cookie = [
+                                'name'   => 'TheCookieName',
+                                'value'  => $data['cookie_key'],
+                                'expire' => '86500'
+                            ];
+
+                            $this->response->setCookie($cookie)->send();
+
+
+                        }
 
                     return redirect()->to('/moncompte');
 

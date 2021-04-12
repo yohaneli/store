@@ -20,12 +20,6 @@ use Psr\Log\LoggerInterface;
 
 class BaseController extends Controller
 {
-	public function __construct(){
-		
-		//include helper form
-		helper('form');
-		
-	}
 	
 	/**
 	 * An array of helpers to be loaded automatically upon
@@ -35,7 +29,17 @@ class BaseController extends Controller
 	 * @var array
 	 */
 	protected $helpers = [];
+	protected $session;
+	
+	public function __construct(){
+		
+		//include helper form
+		$this->helper = ['form', 'custom', 'cookie'];
+		$this->session = \Config\Services::session();
+		$this->session->start();
 
+	}
+	
 	/**
 	 * Constructor.
 	 *

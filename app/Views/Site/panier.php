@@ -165,13 +165,17 @@
 											</tr>
 										</thead>
 										<tbody>
-                                                        <?php if (isset($tabPaniers)) { ?>
+                                                        <?php 
+
+                                                        $total = 0;
+
+                                                        if (isset($tabPaniers)) { 
+
+                                                        ?>
 
                                                             <?php foreach($tabPaniers as $panier) { 
                                                             
-                                                            $produit = $productsModel->where("product_id",$panier['product_id'])->first();
-                                                            
-                                                            $total = 0;
+                                                            $produit = $productsModel->where("product_id",$panier['product_id'])->first();                                                         
 
                                                             $total += $produit['price'] ;
                                                                 

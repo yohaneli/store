@@ -19,6 +19,10 @@ class Commande extends BaseController {
 
 	public $productsModel = null ;
 
+	public $paniersModel = null ;
+
+	public $commandesModel = null ;
+
 		public function __construct() {
 
 			$this->categoriesModel = new CategorieModel();
@@ -28,6 +32,10 @@ class Commande extends BaseController {
 			$this->usersModel = new UserModel();
 
 			$this->productsModel = new ProductModel();
+
+			$this->paniersModel = new PanierModel();
+
+			$this->commandesModel = new PanierModel();
 
 		}
 
@@ -39,12 +47,24 @@ class Commande extends BaseController {
 		
 		$listeProducts = $this->productsModel->findAll();
 
+		$session = session();
+
+		$userId = $session->get('user_id') ;
+
+			if (isset($userId)) {
+
+				$commande = $this->commandesModel->where('user_id',$userId)->findAll();
+
+			}
+
+
 		$data = [
 			'tabCategories' => $listeCategories,
 			'tabProducts'	=> $listeProducts,
 			'tabSousCategories' => $listeSousCategories,
 			'usersModel' => $this->usersModel,
 			'categoriesModel' => $this->categoriesModel,
+			'tabCommandes' 		 => $commande,
 			'sousCategoriesModel' => $this->sousCategoriesModel,
 
 		];
@@ -52,6 +72,34 @@ class Commande extends BaseController {
 		echo view('site/common/headerSite');
 		echo view('site/commande',$data);
 		echo view('site/common/footerSite');
+
+	}
+
+	public function createCommande($id=null) {
+
+		$commande = $this->commandesModel->findAll();
+		
+		$paniers = $this->paniersModel->findAll();
+
+		$produits = $this->productsModel->findAll();
+
+		$users = $this->usersModel->findAll();
+
+		$session = session();
+
+		$userId = $session->get('user_id');
+
+			if (isset($userId)) {
+
+			$elementsCommande = [
+				"user_id"		=> $userId
+			];
+
+			$this->commandesModel->save($elementsCommande);
+
+			} 
+			
+			return redirect()->to('/commande');
 
 	}
 	
