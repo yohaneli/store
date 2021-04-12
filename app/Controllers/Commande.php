@@ -35,7 +35,7 @@ class Commande extends BaseController {
 
 			$this->paniersModel = new PanierModel();
 
-			$this->commandesModel = new PanierModel();
+			$this->commandesModel = new CommandeModel();
 
 		}
 
@@ -53,7 +53,7 @@ class Commande extends BaseController {
 
 			if (isset($userId)) {
 
-				$commande = $this->commandesModel->where('user_id',$userId)->findAll();
+				$commande = $this->commandesModel->where('user_id',$userId)->first();
 
 			}
 
@@ -75,13 +75,17 @@ class Commande extends BaseController {
 
 	}
 
-	public function createCommande($id=null) {
+	public function createCommande() {
+
+		$listeCategories = $this->categoriesModel->findAll();
+		
+		$listeSousCategories = $this->sousCategoriesModel->findAll();
+		
+		$listeProducts = $this->productsModel->findAll();
 
 		$commande = $this->commandesModel->findAll();
 		
 		$paniers = $this->paniersModel->findAll();
-
-		$produits = $this->productsModel->findAll();
 
 		$users = $this->usersModel->findAll();
 
@@ -89,18 +93,53 @@ class Commande extends BaseController {
 
 		$userId = $session->get('user_id');
 
-			if (isset($userId)) {
+		$panier = $this->paniersModel->where('user_id',$userId)->findAll();
 
-			$elementsCommande = [
-				"user_id"		=> $userId
-			];
+		var_dump($panier);
 
-			$this->commandesModel->save($elementsCommande);
+		$prixTotal = 0;
 
-			} 
+			foreach($panier as $product) {
+
+				$prixTotal = $prixTotal+$product['prix_elem_panier'];
+
+			}
+
+		echo $prixTotal;
+
+				if (isset($userId)) {
+
+				$elementsCommande = [
+					"user_id"		=> $userId,
+					"commande_total"=> $prixTotal,
+					"etat"			=> 'Validee',
+				];
+
+				$this->commandesModel->save($elementsCommande);
+
+				$idCommande = $this->commandesModel->getInsertId();
+
+				$dataUpdateCommande = [
+					"commande_id"		=> $idCommande
+				];
+
+				$this->paniersModel->where('user_id',$userId)->where('commande_id',0)->set($dataUpdateCommande)->update();
+
+				}
+				
 			
-			return redirect()->to('/commande');
 
+			$data = [
+				'tabCategories' 		 => $listeCategories,
+				'tabProducts'			 => $listeProducts,
+				'tabSousCategories' 	 => $listeSousCategories,
+				'usersModel' 			 => $this->usersModel,
+				'categoriesModel'		 => $this->categoriesModel,
+				'sousCategoriesModel'	 => $this->sousCategoriesModel,
+				'panierComplet'			 => $panier	
+			];
+			
+			return redirect()->to('/Commande/index');
 	}
 	
 }

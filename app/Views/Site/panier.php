@@ -226,7 +226,7 @@
 											</tr>
 										</tbody>
 									</table>
-									<a href="<?php echo base_url('commande') ;?>" class="btn btn-dark btn-modern btn-block text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Valider la commande</a>
+									<a href="<?php echo base_url('commande/createCommande') ;?>" class="btn btn-dark btn-modern btn-block text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Valider le panier</a>
 								</div>
 							</div>
 						</div>

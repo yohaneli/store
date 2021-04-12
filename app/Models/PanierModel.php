@@ -6,6 +6,6 @@ class PanierModel extends Model {
 
     protected $table = 'panier';
 
-    protected $allowedFields = ['panier_id ','product_id','user_id','cookie_key','panier_date'];
+    protected $allowedFields = ['panier_id ','product_id','user_id','commande_id','prix_elem_panier','cookie_key','panier_date'];
 
 }

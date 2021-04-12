@@ -88,6 +88,12 @@ class Panier extends BaseController {
 
 		$produits = $this->productsModel->findAll();
 
+		$produit = $this->productsModel->where('product_id',$id)->first();
+
+		$produitPrix = 0 ;
+
+		$produitPrix += $produit['price'];
+
 		$users = $this->usersModel->findAll();
 
 		$session = session();
@@ -98,7 +104,8 @@ class Panier extends BaseController {
 
 			$elementsPanier = [
 				"product_id"	=> $id,
-				"user_id"		=> $userId
+				"user_id"		=> $userId,
+				"prix_elem_panier"=> $produitPrix
 			];
 
 			$this->paniersModel->save($elementsPanier);

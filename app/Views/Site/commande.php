@@ -1,3 +1,5 @@
+<?php //dd($tabCommandes); ?>
+
 <title>Commande</title>
 
 <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 135, 'stickySetTop': '-135px', 'stickyChangeLogo': true}">
@@ -120,7 +122,7 @@
         <div class="col-lg-8">
             <ul class="breadcrumb breadcrumb-dividers-no-opacity font-weight-bold text-6 justify-content-center my-5">
                 <li class="text-transform-none mr-2">
-                    <a href="shop-cart.html" class="text-decoration-none text-color-dark text-color-hover-primary">Panier</a>
+                    <a href="#" class="text-decoration-none text-color-dark text-color-hover-primary">Panier</a>
                 </li>
                
                 <li class="text-transform-none text-color-dark">
