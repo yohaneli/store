@@ -37,14 +37,14 @@ class Product extends BaseController {
                 
                 $listeProducts = $this->productsModel->findAll();
 
-                $produit = $this->productsModel->where('category_id',$id)->first();
+                //$produit = $this->productsModel->where('category_id',$id)->first();
         
                 $data = [
                     'tabCategories'         => $listeCategories,
                     'tabProducts'	        => $listeProducts,
                     'tabSousCategories'     => $listeSousCategories,
+                    'produit'               => $produit,
                     'usersModel'            => $this->usersModel,
-                    'produit'               =>$produit,
                     'categoriesModel'       => $this->categoriesModel,
                     'sousCategoriesModel'   => $this->sousCategoriesModel
                 ];

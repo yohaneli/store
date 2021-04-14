@@ -55,18 +55,21 @@ class Commande extends BaseController {
 
 				$commande = $this->commandesModel->where('user_id',$userId)->first();
 
+				$panier = $this->paniersModel->where('user_id',$userId)->findAll();
+
 			}
 
 
 		$data = [
-			'tabCategories' => $listeCategories,
-			'tabProducts'	=> $listeProducts,
-			'tabSousCategories' => $listeSousCategories,
-			'usersModel' => $this->usersModel,
-			'categoriesModel' => $this->categoriesModel,
-			'tabCommandes' 		 => $commande,
-			'sousCategoriesModel' => $this->sousCategoriesModel,
-
+			'tabCategories' 		=> $listeCategories,
+			'tabProducts'			=> $listeProducts,
+			'tabSousCategories' 	=> $listeSousCategories,
+			'usersModel' 			=> $this->usersModel,
+			'productsModel' 		=> $this->productsModel,
+			'panier'				=> $panier,
+			'categoriesModel' 		=> $this->categoriesModel,
+			'tabCommandes' 		 	=> $commande,
+			'sousCategoriesModel' 	=> $this->sousCategoriesModel
 		];
 
 		echo view('site/common/headerSite');
@@ -94,8 +97,6 @@ class Commande extends BaseController {
 		$userId = $session->get('user_id');
 
 		$panier = $this->paniersModel->where('user_id',$userId)->findAll();
-
-		var_dump($panier);
 
 		$prixTotal = 0;
 
@@ -141,5 +142,56 @@ class Commande extends BaseController {
 			
 			return redirect()->to('/Commande/index');
 	}
+
+	public function detailCommande($id=null) {
+
+		$listeCategories = $this->categoriesModel->findAll();
+		
+		$listeSousCategories = $this->sousCategoriesModel->findAll();
+		
+		$listeProducts = $this->productsModel->findAll();
+
+		$commande = $this->commandesModel->where('commande_id',$id)->first();
+
+		$data = [
+			'tabCategories'         => $listeCategories,
+			'tabProducts'	        => $listeProducts,
+			'tabSousCategories'     => $listeSousCategories,
+			'commande'               => $commande,
+			'usersModel'            => $this->usersModel,
+			'categoriesModel'       => $this->categoriesModel,
+			'sousCategoriesModel'   => $this->sousCategoriesModel
+		];
+
+		echo view('admin/common/headerAdmin');
+        echo view('admin/detailcommande',$data);
+        echo view('admin/common/footerAdmin');
+
+	}
+
+	public function listeCommandes() {
+
+		$commandes = $this->commandesModel->findAll();
+		
+		$paniers = $this->paniersModel->findAll();
+
+		$users = $this->usersModel->findAll();
+
+		$data = [
+			'tabPaniers'			=> $paniers,
+			'tabCommandes' 		 	=> $commandes,
+			'tabUsers' 		 		=> $users,
+			'usersModel' 			=> $this->usersModel,
+			'productsModel' 		=> $this->productsModel,
+			'categoriesModel' 		=> $this->categoriesModel,
+			'sousCategoriesModel' 	=> $this->sousCategoriesModel
+		];
+
+		echo view('admin/common/headerAdmin');
+        echo view('admin/listecommandes',$data);
+        echo view('admin/common/footerAdmin');
+
+	}
+
 	
 }

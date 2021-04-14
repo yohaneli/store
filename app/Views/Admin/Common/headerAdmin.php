@@ -15,8 +15,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 		<!-- Web Fonts  -->
-
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,600,700,800,900" rel="stylesheet" >
+		
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,600,700,800,900" rel="stylesheet" type="text/css">
 
 		<!-- Vendor CSS -->
         
@@ -120,46 +120,58 @@
 
 														<li class="dropdown">
 															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/adminhome') ;?>">
-																Accueil
-															</a>
-														</li>
-
-														<li class="dropdown">
-															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/adminhome') ;?>">
-																Liste des produits
-															</a>
-														</li>
-
-														<li class="dropdown">
-															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/produit') ;?>">
-																Ajouter un produit
-															</a>
-														</li>
-
-														<li class="dropdown">
-															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/categorie') ;?>">
-																Liste des catégories
-															</a>
-														</li>
-
-														<li class="dropdown">
-															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/souscategorie') ;?>">
-																Liste des sous-catégories
-															</a>
-														</li>
-
-														<li class="dropdown">
-															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/users') ;?>">
-																Liste des utilisateurs
+																Accueil Admin
 															</a>
 														</li>
 
 														<li class="dropdown">
 															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('home') ;?>">
-																Retour au Site
+																Retour à la Boutique
 															</a>
 														</li>
 
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/adminhome') ;?>">
+																Produits
+															</a>
+															<ul class="dropdown-menu">
+																<li>
+																	<a class="dropdown-item" href="<?php echo base_url('admin/produit') ;?>">
+																		Ajouter un produit
+																	</a>
+																</li>
+															</ul>
+														</li>
+
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/categorie') ;?>">
+																Catégories
+															</a>
+														</li>
+
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/souscategorie') ;?>">
+																Sous-catégories
+															</a>
+														</li>
+
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('admin/users') ;?>">
+																Clients
+															</a>
+														</li>
+
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('commande/listeCommandes') ;?>">
+																Commandes
+															</a>
+														</li>
+
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="<?php echo base_url('login/logout') ;?>">
+																Déconnexion
+															</a>
+														</li>
 													</ul>
 												</nav>
 											</div>
